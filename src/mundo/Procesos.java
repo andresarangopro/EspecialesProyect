@@ -175,19 +175,23 @@ public class Procesos {
 	
 	public String matrizToString(String[][] matriz,ArrayList<Elemento> p){
 		String stringMatriz = "";
-		String elements = "";
-		for (int i = 0; i < p.size(); i++) {
-			elements += p.get(i).getNombre()+"  ";
-		}
-		elements += "\n";
+		String elements = "";////se quita comentando las lineas con slash
+		for (int i = 0; i < p.size(); i++) {///
+			elements += p.get(i).getNombre()+"  ";///
+		}///
+		elements += "\n";///
+		for (int i = 0; i < p.size(); i++) {//
+			elements += "_"+"  ";///
+		}	///
+		elements += "\n";//
 		for (int i = 0; i < matriz.length; i++) {
 			for (int j = 0; j < matriz.length; j++) {
 				stringMatriz += matriz[i][j]+"  ";
 			}
-			stringMatriz += p.get(i).getNombre();
+			stringMatriz += " | "+ p.get(i).getNombre();////
 			stringMatriz += "\n";
 		}
-		elements += stringMatriz;
+		elements += stringMatriz;/// cambiar el return por stringMatriz
 		return elements;
 	}
 
