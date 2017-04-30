@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import mundo.Elemento;
+import mundo.Procesos;
 import mundo.Propiedades;
 import mundo.Relacion;
 
@@ -114,60 +115,9 @@ public class Interfaz extends JFrame {
 		btnConexo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				
-				
-				/**
-				if (dibujos.elementos.size() != 0) {
-					matrizConexo = propiedades.matrizRelacion(dibujos.elementos, dibujos.relaciones);
-					productoConex = new int[matrizConexo.length][matrizConexo[0].length];
-					for (int i = 0; i < matrizConexo.length; i++) {
-						for (int j = 0; j < matrizConexo.length; j++) {
-							productoConex[i][j] = Integer.parseInt(matrizConexo[i][j]);
-
-						}
-					}
-					conexoArray.add(productoConex);
-					for (int i = 0; i < dibujos.elementos.size() - 1; i++) {
-						conexoArray
-								.add(propiedades.matrizPotencia(conexoArray.get(i), productoConex, dibujos.elementos));
-					}
-
-					matrizSuma = propiedades.matrizSuma(conexoArray);
-					matrizCaminos = propiedades.matrizCaminos(matrizSuma);
-					// pone el texto en la tabla de conexo
-					if (propiedades.conexo(matrizCaminos,dibujos.elementos,table)) {
-						table.setValueAt("X", 2, 1);
-					} else {
-						
-						table.setValueAt("X", 2, 2);
-					}
-					// pone el texto en la tabla de fuertemente conexo
-					if (propiedades.buscaCeroFueraDiagonal(conexoArray.get(0),dibujos.elementos,table)) {
-						table.setValueAt("X", 3, 1);
-					} else {
-						table.setValueAt("X", 3, 2);
-					}
-					// pone el texto en la tabla de regular
-					if (propiedades.regular(conexoArray.get(0),dibujos.elementos,table)) {
-						table.setValueAt("X", 4, 1);
-					} else {
-						table.setValueAt("X", 4, 2);
-					}
-					
-					// pone el texto en la tabla de completo
-					if(conexoArray.size() > 1){
-						if (propiedades.buscaCeroFuera1(conexoArray.get(1),dibujos.elementos,table)) {
-							table.setValueAt("X", 5, 1);
-						} else {
-							table.setValueAt("X", 5, 2);
-						}
-
-					}else{
-						table.setValueAt("X", 5, 2);
-						table.setValueAt("No hay camino entre "+dibujos.elementos.get(0)+" y "+ dibujos.elementos.get(0), 5, 3);
-					}
-				}*/
-
+				Procesos p = new Procesos();
+				String [][]mAdyacencia1 =p.matrizAd(dibujos.relaciones, dibujos.elementos);
+				String [][]mAdyacencia2 =p.matrizAd(dibujos_1.relaciones, dibujos_1.elementos);		
 			}
 		});
 		btnConexo.setBounds(289, 510, 199, 23);
