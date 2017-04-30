@@ -2,6 +2,11 @@ package mundo;
 
 import java.util.ArrayList;
 
+/**
+ * Crea la matriz de adyacencias
+ * @author Sebastian Luna R
+ *
+ */
 public class Procesos {
 	
 	///////////////////////////////
@@ -63,83 +68,6 @@ public class Procesos {
 		return false;
 	}
 	
-	/**************************************************
-	 * Metodo que halla la interseccion de dos listas
-	 * 
-	 * @param relaciones
-	 * @param relaciones2
-	 * @return
-	 *************************************************/
-	public String interseccionRnS(ArrayList<Relacion> relaciones, ArrayList<Relacion> relaciones2) {
-		String interseccionRnS = "";
-		String eR1 = "";
-		String eR2 = "";
-		for (int i = 0; i < relaciones.size(); i++) {
-				eR1 = relaciones.get(i).getElemento1().getNombre();
-				eR2 = relaciones.get(i).getElemento2().getNombre();				
-			for (int j = 0; j < relaciones2.size(); j++) {
-				if(relaciones.get(i).equals(relaciones2.get(j))){
-					interseccionRnS += "("+eR1+","+eR2+")"+",";
-				}
-			}
-
-		}
-		if (!interseccionRnS.equals("")) {
-			interseccionRnS = quitarUltimaComa(interseccionRnS);
-		}
-		return interseccionRnS;
-	}
-
-	/**********************************************
-	 * Metodo que halla la union de dos listas
-	 * 
-	 * @param relaciones
-	 * @param relaciones2
-	 * @return
-	 ***********************************************/
-
-	public String unionRuS(ArrayList<Relacion> relaciones, ArrayList<Relacion> relaciones2) {
-		ArrayList<Relacion> interseccion = interseccioRnS(relaciones, relaciones2);
-		String e1, e2;
-		String union = "";
-		for (int i = 0; i < relaciones.size(); i++) {
-			e1 = relaciones.get(i).getElemento1().getNombre();
-			e2 = relaciones.get(i).getElemento2().getNombre();
-			if (!comp(relaciones.get(i), interseccion)) {
-				union += "("+ e1 + ","+e2+")"+",";
-			}
-		}
-		for (int j = 0; j < relaciones2.size(); j++) {
-			e1 = relaciones2.get(j).getElemento1().getNombre();
-			e2 = relaciones2.get(j).getElemento2().getNombre();
-			if (!comp(relaciones2.get(j), interseccion)) {
-				union += "("+ e1 + ","+e2+")"+",";
-			}
-		}
-		if (!union.equals("")) {
-			union = quitarUltimaComa(union);
-		}
-
-		return union;
-	}
-
-	/***************************************
-	 * Comprueba si un elemento existe en 
-	 * la interseccion
-	 * 
-	 * @param e
-	 * @param interseccion
-	 * @return
-	 ***************************************/
-
-	public boolean comp(Relacion e, ArrayList<Relacion> interseccion) {		
-		for (int k = 0; k < interseccion.size(); k++) {
-			if(e.equals(interseccion.get(k))){
-				return true;
-			}			
-		}
-		return false;
-	}
 
 	/***********************************************
 	 * Metodo que elimina el ultimo caracter de un string
@@ -158,19 +86,6 @@ public class Procesos {
 		return t;
 	}
 	
-	
-	public ArrayList<Relacion> interseccioRnS(ArrayList<Relacion> relaciones, ArrayList<Relacion> relaciones2) {
-		ArrayList<Relacion> interseccionRnS = new ArrayList<>();	
-		for (int i = 0; i < relaciones.size(); i++) {				
-			for (int j = 0; j < relaciones2.size(); j++) {
-				if(relaciones.get(i).equals(relaciones2.get(j))){
-					interseccionRnS.add(relaciones.get(i));
-				}
-			}
-		}
-		
-		return interseccionRnS;
-	}
 	
 	
 	public String matrizToString(String[][] matriz,ArrayList<Elemento> p){

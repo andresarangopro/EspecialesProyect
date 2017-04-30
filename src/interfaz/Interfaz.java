@@ -9,25 +9,17 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import mundo.Elemento;
 import mundo.Operaciones;
 import mundo.Procesos;
-import mundo.Propiedades;
-import mundo.Relacion;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
-import javax.swing.JList;
-import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.border.BevelBorder;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
-import javax.swing.SwingConstants;
 import javax.swing.JTextPane;
 
 public class Interfaz extends JFrame {
@@ -39,7 +31,6 @@ public class Interfaz extends JFrame {
 	 */
 	private Dibujos dibujos = null;
 	private Dibujos dibujos_1 = null;
-	private Propiedades propiedades = new Propiedades();
 	private String[][] matrizRelacion1;
 	private String[][] matrizConexo;
 	private int[][] productoConex;
@@ -110,15 +101,15 @@ public class Interfaz extends JFrame {
 
 			}
 		});
-		btnClear.setBounds(289, 544, 199, 23);
+		btnClear.setBounds(164, 544, 199, 23);
 		panel.add(btnClear);
 
 		dibujos_1 = new Dibujos();
 		dibujos_1.setBounds(395, 11, 345, 334);
 		panel.add(dibujos_1);
 
-		JButton btnConexo = new JButton("Generar Tabla");
-		btnConexo.addActionListener(new ActionListener() {
+		JButton btnGenerar = new JButton("Generar Tabla");
+		btnGenerar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
 				Procesos p = new Procesos();
@@ -134,15 +125,19 @@ public class Interfaz extends JFrame {
 				String difAB = op.diferenciaAB();
 				String difBA = op.diferenciaBA();
 				String difsim = op.difSimetrica();
+				String complementoA = op.complementoA();
+				String complementoB = op.complementoB();
 				table.setValueAt("["+in+"]", 0, 1);
 				table.setValueAt("["+un+"]", 1, 1);	
 				table.setValueAt("["+difAB+"]", 2, 1);	
 				table.setValueAt("["+difBA+"]", 3, 1);	
 				table.setValueAt("["+difsim+"]", 4, 1);	
+				table.setValueAt("["+complementoA+"]", 5, 1);	
+				table.setValueAt("["+complementoB+"]", 6, 1);	
 			}
 		});
-		btnConexo.setBounds(289, 510, 199, 23);
-		panel.add(btnConexo);
+		btnGenerar.setBounds(371, 544, 199, 23);
+		panel.add(btnGenerar);
 
 		table = new JTable();
 		table.setToolTipText("");
@@ -164,7 +159,7 @@ public class Interfaz extends JFrame {
 		));
 		table.getColumnModel().getColumn(0).setPreferredWidth(300);
 		table.getColumnModel().getColumn(1).setPreferredWidth(325);
-		table.setBounds(10, 390, 730, 96);
+		table.setBounds(10, 390, 730, 112);
 		panel.add(table);
 		
 		txtPMatrixA1 = new JTextPane();

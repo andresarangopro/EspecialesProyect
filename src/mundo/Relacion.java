@@ -1,5 +1,9 @@
 package mundo;
 
+/**
+ * Clase encargada crear las relaciones entre las variables
+ *
+ */
 public class Relacion {
    
 	//////////////////////////////

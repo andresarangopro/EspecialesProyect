@@ -24,7 +24,15 @@ public class Operaciones {
 	 */
 	ArrayList<String> arrayUniversal = new ArrayList<>();
 	
+	/**
+	 * Arraylist que contiene las intersecciones entre la lista A y la lista B
+	 */
 	ArrayList<String> interseccion;
+	
+	/**
+	 * Arraylist que contiene los puntos individuales de cada arraylist
+	 */
+	ArrayList<String> puntos = new ArrayList<>();
 	
 	/**
 	 * Constructor de la clase operaciones
@@ -32,15 +40,32 @@ public class Operaciones {
 	 * @param arrayB Conjunto de relaciones 2
 	 */
 	public Operaciones(ArrayList<Relacion> arrayA, ArrayList<Relacion> arrayB) {
+		
 		this.arrayA = toString(arrayA);
 		this.arrayB = toString(arrayB);
 		
 		interseccion = new ArrayList<>(this.arrayA);
+		generarPuntos(arrayA);
+		generarPuntos(arrayB);
 		
 		generarUniversal(this.arrayA, this.arrayB);
 		
 	}
+	
+	private void generarPuntos(ArrayList<Relacion> relaciones){
+		
+		for (int i = 0; i < relaciones.size(); i++) {
+			puntos.add(relaciones.get(i).getElemento1().getNombre());
+			puntos.add(relaciones.get(i).getElemento2().getNombre());
 
+		}
+		
+		Set<String> hs = new HashSet<>();
+		
+		hs.addAll(puntos);
+		puntos.clear();
+		puntos.addAll(hs);
+	}
 	
 	/**
 	 * Genera el conjunto universal basado en los dos conjuntos ingresados
@@ -93,6 +118,10 @@ public class Operaciones {
 		return todos;
 	}
 	
+	/**
+	 * Genera el arraylist con las intersecciones de las listas
+	 * @return Arraylist de intersecciones
+	 */
 	public String interseccion(){
 		
 
@@ -105,6 +134,10 @@ public class Operaciones {
 		return todos;
 	}
 	
+	/**
+	 * Genera la diferencia entre la lista A y la lista B
+	 * @return String con las parejas de la diferencia
+	 */
 	public String diferenciaAB(){
 		
 		String todos = "";
@@ -126,6 +159,10 @@ public class Operaciones {
 		return todos;
 	}
 	
+	/**
+	 * Genera la diferencia entre la lista B y la lista A
+	 * @return String con las parejas de la diferencia
+	 */
 	public String diferenciaBA(){
 		
 		String todos = "";
@@ -147,24 +184,83 @@ public class Operaciones {
 		return todos;
 	}
 
+	/**
+	 * Genera la diferencia simétrica con respecto a el conjunto universal
+	 * @return String con las parejas
+	 */
 	public String difSimetrica(){
+		final int tamaño = puntos.size();
+		String parejas = "";
+		for (int i = 0; i < tamaño; i++) {
+			for (int j = 0; j < tamaño; j++) {
+				String pareja = "("+puntos.get(i)+","+puntos.get(j)+")";
+				boolean encontrar = false;
+				for (int k = 0; k < arrayUniversal.size(); k++) {
+					
+					if(pareja.equals(arrayUniversal.get(k))){
+						encontrar = true;
+					}					
+				}
+				if(!encontrar){
+					parejas += pareja;
+				}
+			}			
+		}
+		return parejas;
+	}	
 	
-		ArrayList<String> a = new ArrayList<>(arrayA);
-		a.addAll(arrayB);
-		String todos = "";
-		for (int i = 0; i < a.size(); i++) {
-			boolean encontrar = false;
-			for (int j = 0; j < interseccion.size(); j++) {
+	/**
+	 * Genera el complemento de A con respecto al conjunto universal
+	 * @return String con las parejas
+	 */
+	public String complementoA(){
+		final int tamaño = puntos.size();
+		String parejas = "";
+		for (int i = 0; i < tamaño; i++) {
+			for (int j = 0; j < tamaño; j++) {
 				
-				if(a.get(i).equals(interseccion.get(j))){
-					encontrar = true;
-				}			
-			}	
-			if(!encontrar){
-				todos += a.get(i);
+				String pareja = "("+puntos.get(i)+","+puntos.get(j)+")";
+				boolean encontrar = false;
+				for (int k = 0; k < arrayA.size(); k++) {
+					
+					if(pareja.equals(arrayA.get(k))){
+						encontrar = true;
+					}					
+				}
+				if(!encontrar){
+					parejas += pareja;
+				}
+				
 			}
 		}
-		
-		return todos;
-	}	
+		return parejas;
+	}
+
+	/**
+	 * Genera el complemento de A con respecto al conjunto universal
+	 * @return String con las parejas
+	 */
+	public String complementoB(){
+		final int tamaño = puntos.size();
+		String parejas = "";
+		for (int i = 0; i < tamaño; i++) {
+			for (int j = 0; j < tamaño; j++) {
+				
+				String pareja = "("+puntos.get(i)+","+puntos.get(j)+")";
+				boolean encontrar = false;
+				for (int k = 0; k < arrayB.size(); k++) {
+					
+					if(pareja.equals(arrayB.get(k))){
+						encontrar = true;
+					}					
+				}
+				if(!encontrar){
+					parejas += pareja;
+				}
+				
+			}
+		}
+		return parejas;
+	}
+
 }
