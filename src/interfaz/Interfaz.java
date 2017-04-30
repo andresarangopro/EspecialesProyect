@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import mundo.Elemento;
+import mundo.Operaciones;
 import mundo.Procesos;
 import mundo.Propiedades;
 import mundo.Relacion;
@@ -120,16 +121,23 @@ public class Interfaz extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 
 				Procesos p = new Procesos();
-				String [][]mAdyacencia1 =p.matrizAd(dibujos.relaciones, dibujos.elementos);
-				String [][]mAdyacencia2 =p.matrizAd(dibujos_1.relaciones, dibujos_1.elementos);
+				Operaciones op = new Operaciones(dibujos.relaciones, dibujos_1.relaciones);
+				String [][]mAdyacencia1 = p.matrizAd(dibujos.relaciones, dibujos.elementos);
+				String [][]mAdyacencia2 = p.matrizAd(dibujos_1.relaciones, dibujos_1.elementos);
 				String mA1String = p.matrizToString(mAdyacencia1,dibujos.elementos);
 				String mA2String = p.matrizToString(mAdyacencia2,dibujos_1.elementos);
 				txtPMatrixA1.setText(mA1String);
 				txtPMatrixA2.setText(mA2String);
-				String in = p.interseccionRnS(dibujos.relaciones, dibujos_1.relaciones);
-				String un = p.unionRuS(dibujos.relaciones, dibujos_1.relaciones);
+				String in = op.interseccion();
+				String un = op.universal();
+				String difAB = op.diferenciaAB();
+				String difBA = op.diferenciaBA();
+				String difsim = op.difSimetrica();
 				table.setValueAt("["+in+"]", 0, 1);
-				table.setValueAt("["+un+"]", 1, 1);			
+				table.setValueAt("["+un+"]", 1, 1);	
+				table.setValueAt("["+difAB+"]", 2, 1);	
+				table.setValueAt("["+difBA+"]", 3, 1);	
+				table.setValueAt("["+difsim+"]", 4, 1);	
 			}
 		});
 		btnConexo.setBounds(289, 510, 199, 23);

@@ -35,7 +35,7 @@ public class Dibujos extends JPanel {
 	private boolean clicked = false;
 	private boolean clickedFlechaS = false;
 
-	// Tamaño del elemento
+	// Tamaï¿½o del elemento
 	private  int tElemento = 10;
 	private  int tArco = tElemento / 2;
 	private  Point flecha = new Point(-1, -1);
@@ -243,7 +243,7 @@ public class Dibujos extends JPanel {
 					temporal.setY(e.getY() - tArco);
 					temporal.setNombre(nombre);
 
-					// a la lista elementos le añade el elemento creado
+					// a la lista elementos le aï¿½ade el elemento creado
 					elementos.add(temporal);
 
 					this.repaint();
@@ -253,7 +253,7 @@ public class Dibujos extends JPanel {
 				// a la variable clicked del tipo bool, le asigna true
 				clicked = true;
 			}
-			// si el click presionado fue derecho entra aquí
+			// si el click presionado fue derecho entra aquï¿½
 		} else if (e.getButton() == MouseEvent.BUTTON3) {
 			// verifica si esta tocando un elemento, si es verdadero a la
 			// variable
@@ -285,7 +285,7 @@ public class Dibujos extends JPanel {
 	protected void jS_mouseReleased(MouseEvent e) {
 		if (clickedFlechaS && elementoEncima(e.getX(), e.getY())) {
 			// pregunta que no sean iguales los elementos con cual se hara la
-			// relación
+			// relaciï¿½n
 			/*
 			 * if(!(elementoAnterior == elementoSeleccionado)){ Relacion
 			 * nuevaRelacion = new Relacion();

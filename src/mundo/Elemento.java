@@ -55,9 +55,4 @@ public class Elemento {
 	public String getNombre() {
 		return nombre;
 	}
-
-	@Override
-	public String toString() {
-		return "[" + x + "," + y + "]";
-	}
 }
