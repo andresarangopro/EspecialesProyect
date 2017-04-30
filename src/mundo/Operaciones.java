@@ -47,6 +47,12 @@ public class Operaciones {
 		arrayUniversal.addAll(hs);
 	}
 	
+	private void interseccion(){
+		
+		ArrayList<Relacion> interseccion = new ArrayList<>(arrayA);
+		
+		System.out.println(interseccion.retainAll(arrayB));		
+	}
 
 	
 	//////////////////////////////////////
