@@ -92,7 +92,8 @@ public class Interfaz extends JFrame {
 				dibujos.elementos.clear();
 				dibujos.relaciones.clear();
 				dibujos.repaint();
-
+				txtPMatrixA1.setText("");
+				txtPMatrixA2.setText("");
 				dibujos_1.elementos.clear();
 				dibujos_1.relaciones.clear();
 				permuta.clear();
