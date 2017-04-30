@@ -66,17 +66,20 @@ public class Procesos {
 	/**************************************************
 	 * Metodo que halla la interseccion de dos listas
 	 * 
-	 * @param matrizE1
-	 * @param matrizE2
+	 * @param relaciones
+	 * @param relaciones2
 	 * @return
 	 *************************************************/
-	public String interseccionRnS(ArrayList<Elemento> matrizE1, ArrayList<Elemento> matrizE2) {
+	public String interseccionRnS(ArrayList<Relacion> relaciones, ArrayList<Relacion> relaciones2) {
 		String interseccionRnS = "";
-		for (int i = 0; i < matrizE1.size(); i++) {
-			for (int j = 0; j < matrizE2.size(); j++) {
-				if (matrizE1.get(i).equals(matrizE2.get(j))) {
-					interseccionRnS += matrizE1.get(i).getNombre() + ",";
-
+		String eR1 = "";
+		String eR2 = "";
+		for (int i = 0; i < relaciones.size(); i++) {
+				eR1 = relaciones.get(i).getElemento1().getNombre();
+				eR2 = relaciones.get(i).getElemento2().getNombre();				
+			for (int j = 0; j < relaciones2.size(); j++) {
+				if(relaciones.get(i).equals(relaciones2.get(j))){
+					interseccionRnS += "("+eR1+","+eR2+")"+",";
 				}
 			}
 
@@ -90,25 +93,27 @@ public class Procesos {
 	/**********************************************
 	 * Metodo que halla la union de dos listas
 	 * 
-	 * @param matrizE1
-	 * @param matrizE2
+	 * @param relaciones
+	 * @param relaciones2
 	 * @return
 	 ***********************************************/
 
-	public String unionRuS(ArrayList<Elemento> matrizE1, ArrayList<Elemento> matrizE2) {
-		String interseccion = interseccionRnS(matrizE1, matrizE2);
+	public String unionRuS(ArrayList<Relacion> relaciones, ArrayList<Relacion> relaciones2) {
+		ArrayList<Relacion> interseccion = interseccioRnS(relaciones, relaciones2);
 		String e1, e2;
 		String union = "";
-		for (int i = 0; i < matrizE1.size(); i++) {
-			e1 = matrizE1.get(i).getNombre();
-			if (!comp(e1, interseccion)) {
-				union += e1 + ",";
+		for (int i = 0; i < relaciones.size(); i++) {
+			e1 = relaciones.get(i).getElemento1().getNombre();
+			e2 = relaciones.get(i).getElemento2().getNombre();
+			if (!comp(relaciones.get(i), interseccion)) {
+				union += "("+ e1 + ","+e2+")"+",";
 			}
 		}
-		for (int j = 0; j < matrizE2.size(); j++) {
-			e2 = matrizE2.get(j).getNombre();
-			if (!comp(e2, interseccion)) {
-				union += e2 + ",";
+		for (int j = 0; j < relaciones2.size(); j++) {
+			e1 = relaciones2.get(j).getElemento1().getNombre();
+			e2 = relaciones2.get(j).getElemento2().getNombre();
+			if (!comp(relaciones2.get(j), interseccion)) {
+				union += "("+ e1 + ","+e2+")"+",";
 			}
 		}
 		if (!union.equals("")) {
@@ -119,22 +124,19 @@ public class Procesos {
 	}
 
 	/***************************************
-	 * Comprueba si un elemento existe en la interseccion
+	 * Comprueba si un elemento existe en 
+	 * la interseccion
 	 * 
 	 * @param e
 	 * @param interseccion
 	 * @return
 	 ***************************************/
 
-	public boolean comp(String e, String interseccion) {
-
-		String charAtPos = "";
-		char[] inter = interseccion.toCharArray();
-		for (int k = 0; k < inter.length; k++) {
-			charAtPos = inter[k] + "";
-			if (e.equals(charAtPos)) {
+	public boolean comp(Relacion e, ArrayList<Relacion> interseccion) {		
+		for (int k = 0; k < interseccion.size(); k++) {
+			if(e.equals(interseccion.get(k))){
 				return true;
-			}
+			}			
 		}
 		return false;
 	}
@@ -154,6 +156,39 @@ public class Procesos {
 			t += p[i];
 		}
 		return t;
+	}
+	
+	
+	public ArrayList<Relacion> interseccioRnS(ArrayList<Relacion> relaciones, ArrayList<Relacion> relaciones2) {
+		ArrayList<Relacion> interseccionRnS = new ArrayList<>();	
+		for (int i = 0; i < relaciones.size(); i++) {				
+			for (int j = 0; j < relaciones2.size(); j++) {
+				if(relaciones.get(i).equals(relaciones2.get(j))){
+					interseccionRnS.add(relaciones.get(i));
+				}
+			}
+		}
+		
+		return interseccionRnS;
+	}
+	
+	
+	public String matrizToString(String[][] matriz,ArrayList<Elemento> p){
+		String stringMatriz = "";
+		String elements = "";
+		for (int i = 0; i < p.size(); i++) {
+			elements += p.get(i).getNombre()+"  ";
+		}
+		elements += "\n";
+		for (int i = 0; i < matriz.length; i++) {
+			for (int j = 0; j < matriz.length; j++) {
+				stringMatriz += matriz[i][j]+"  ";
+			}
+			stringMatriz += p.get(i).getNombre();
+			stringMatriz += "\n";
+		}
+		elements += stringMatriz;
+		return elements;
 	}
 
 }

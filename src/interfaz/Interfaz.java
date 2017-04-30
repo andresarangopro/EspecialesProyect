@@ -2,6 +2,7 @@ package interfaz;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.SystemColor;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -26,6 +27,7 @@ import javax.swing.border.BevelBorder;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
 import javax.swing.SwingConstants;
+import javax.swing.JTextPane;
 
 public class Interfaz extends JFrame {
 
@@ -46,6 +48,8 @@ public class Interfaz extends JFrame {
 	private int[][] matrizSuma;
 	private String[][] matrizCaminos;
 	private JTable table;
+	private JTextPane txtPMatrixA1;
+	private JTextPane txtPMatrixA2;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -67,7 +71,7 @@ public class Interfaz extends JFrame {
 
 	public Interfaz() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 783, 627);
+		setBounds(100, 100,1100, 627);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -117,9 +121,13 @@ public class Interfaz extends JFrame {
 
 				Procesos p = new Procesos();
 				String [][]mAdyacencia1 =p.matrizAd(dibujos.relaciones, dibujos.elementos);
-				String [][]mAdyacencia2 =p.matrizAd(dibujos_1.relaciones, dibujos_1.elementos);		
-				String in = p.interseccionRnS(dibujos.elementos, dibujos_1.elementos);
-				String un = p.unionRuS(dibujos.elementos, dibujos_1.elementos);
+				String [][]mAdyacencia2 =p.matrizAd(dibujos_1.relaciones, dibujos_1.elementos);
+				String mA1String = p.matrizToString(mAdyacencia1,dibujos.elementos);
+				String mA2String = p.matrizToString(mAdyacencia2,dibujos_1.elementos);
+				txtPMatrixA1.setText(mA1String);
+				txtPMatrixA2.setText(mA2String);
+				String in = p.interseccionRnS(dibujos.relaciones, dibujos_1.relaciones);
+				String un = p.unionRuS(dibujos.relaciones, dibujos_1.relaciones);
 				table.setValueAt("["+in+"]", 0, 1);
 				table.setValueAt("["+un+"]", 1, 1);			
 			}
@@ -149,5 +157,17 @@ public class Interfaz extends JFrame {
 		table.getColumnModel().getColumn(1).setPreferredWidth(325);
 		table.setBounds(10, 390, 730, 96);
 		panel.add(table);
+		
+		txtPMatrixA1 = new JTextPane();
+		txtPMatrixA1.setEnabled(false);
+		txtPMatrixA1.setBounds(771, 11, 261, 230);
+		txtPMatrixA1.setDisabledTextColor(Color.BLACK);
+		panel.add(txtPMatrixA1);
+		
+		txtPMatrixA2 = new JTextPane();
+		txtPMatrixA2.setEnabled(false);
+		txtPMatrixA2.setBounds(771, 286, 261, 230);
+		txtPMatrixA2.setDisabledTextColor(Color.BLACK);
+		panel.add(txtPMatrixA2);
 	}
 }

@@ -13,7 +13,7 @@ public class Relacion {
     
     public boolean equals(Relacion relacion) {
  
-        return elemento1.equals(relacion.getElemento1()) && elemento2.equals(relacion.getElemento2());
+        return this.getElemento1().equals(relacion.getElemento1()) && this.getElemento2().equals(relacion.getElemento2());
     }
     
 	//////////////////////////////
