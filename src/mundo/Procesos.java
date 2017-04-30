@@ -11,7 +11,7 @@ public class Procesos {
 	/****************************************************
 	 * Metodo que genera la matriz de adyacencia
 	 * generando una matriz de nxn donde n es el 
-	 * número de elementos, compara cada par de 
+	 * nï¿½mero de elementos, compara cada par de 
 	 * elementos con las relaciones existentes
 	 * y si esta existe pone un 1 en la pos i,j de 
 	 * la matriz que se esta generando en caso contrario
