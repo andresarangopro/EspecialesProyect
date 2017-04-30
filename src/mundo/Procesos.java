@@ -62,5 +62,98 @@ public class Procesos {
 		}
 		return false;
 	}
+	
+	/**************************************************
+	 * Metodo que halla la interseccion de dos listas
+	 * 
+	 * @param matrizE1
+	 * @param matrizE2
+	 * @return
+	 *************************************************/
+	public String interseccionRnS(ArrayList<Elemento> matrizE1, ArrayList<Elemento> matrizE2) {
+		String interseccionRnS = "";
+		for (int i = 0; i < matrizE1.size(); i++) {
+			for (int j = 0; j < matrizE2.size(); j++) {
+				if (matrizE1.get(i).equals(matrizE2.get(j))) {
+					interseccionRnS += matrizE1.get(i).getNombre() + ",";
+
+				}
+			}
+
+		}
+		if (!interseccionRnS.equals("")) {
+			interseccionRnS = quitarUltimaComa(interseccionRnS);
+		}
+		return interseccionRnS;
+	}
+
+	/**********************************************
+	 * Metodo que halla la union de dos listas
+	 * 
+	 * @param matrizE1
+	 * @param matrizE2
+	 * @return
+	 ***********************************************/
+
+	public String unionRuS(ArrayList<Elemento> matrizE1, ArrayList<Elemento> matrizE2) {
+		String interseccion = interseccionRnS(matrizE1, matrizE2);
+		String e1, e2;
+		String union = "";
+		for (int i = 0; i < matrizE1.size(); i++) {
+			e1 = matrizE1.get(i).getNombre();
+			if (!comp(e1, interseccion)) {
+				union += e1 + ",";
+			}
+		}
+		for (int j = 0; j < matrizE2.size(); j++) {
+			e2 = matrizE2.get(j).getNombre();
+			if (!comp(e2, interseccion)) {
+				union += e2 + ",";
+			}
+		}
+		if (!union.equals("")) {
+			union = quitarUltimaComa(union);
+		}
+
+		return union;
+	}
+
+	/***************************************
+	 * Comprueba si un elemento existe en la interseccion
+	 * 
+	 * @param e
+	 * @param interseccion
+	 * @return
+	 ***************************************/
+
+	public boolean comp(String e, String interseccion) {
+
+		String charAtPos = "";
+		char[] inter = interseccion.toCharArray();
+		for (int k = 0; k < inter.length; k++) {
+			charAtPos = inter[k] + "";
+			if (e.equals(charAtPos)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/***********************************************
+	 * Metodo que elimina el ultimo caracter de un string
+	 * 
+	 * @param interseccionRnS
+	 * @return
+	 ***********************************************/
+
+	public String quitarUltimaComa(String interseccionRnS) {
+		char[] p = interseccionRnS.toCharArray();
+		p[p.length - 1] = ' ';
+		String t = "";
+		for (int i = 0; i < p.length; i++) {
+			t += p[i];
+		}
+		return t;
+	}
 
 }

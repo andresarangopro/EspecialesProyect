@@ -118,6 +118,10 @@ public class Interfaz extends JFrame {
 				Procesos p = new Procesos();
 				String [][]mAdyacencia1 =p.matrizAd(dibujos.relaciones, dibujos.elementos);
 				String [][]mAdyacencia2 =p.matrizAd(dibujos_1.relaciones, dibujos_1.elementos);		
+				String in = p.interseccionRnS(dibujos.elementos, dibujos_1.elementos);
+				String un = p.unionRuS(dibujos.elementos, dibujos_1.elementos);
+				table.setValueAt("["+in+"]", 0, 1);
+				table.setValueAt("["+un+"]", 1, 1);			
 			}
 		});
 		btnConexo.setBounds(289, 510, 199, 23);
