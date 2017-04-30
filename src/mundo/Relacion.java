@@ -7,18 +7,13 @@ public class Relacion {
 	//////////////////////////////
     private Elemento elemento1, elemento2;
     
- 	//////////////////////////////
+ 	////////////////////////////////
  	//Metodos
- 	//////////////////////////////
+ 	////////////////////////////////
     
     public boolean equals(Relacion relacion) {
-        if (this == relacion)
-            return true;
-        
-        if (elemento1.equals(relacion.getElemento1()) && elemento2.equals(relacion.getElemento2()))
-            return true;
-        
-        return false;
+ 
+        return elemento1.equals(relacion.getElemento1()) && elemento2.equals(relacion.getElemento2());
     }
     
 	//////////////////////////////
@@ -40,6 +35,4 @@ public class Relacion {
     public String toString() {
         return "(" + elemento1 + ", " + elemento2 + ")";
     }
-
-
 }
