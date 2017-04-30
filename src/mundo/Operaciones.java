@@ -2,12 +2,10 @@ package mundo;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 
 /**
  * Clase encargada de realizar las operaciones entre conjuntos 
- *
  */
 public class Operaciones {
 
