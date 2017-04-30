@@ -56,9 +56,8 @@ public class Elemento {
 		return nombre;
 	}
 
+	@Override
 	public String toString() {
-		return nombre;
+		return "[" + x + "," + y + "]";
 	}
-
-	
 }
