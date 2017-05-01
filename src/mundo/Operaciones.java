@@ -209,6 +209,26 @@ public class Operaciones {
 		return parejas;
 	}	
 	
+	public String difSimetrica2(){
+		
+		String parejas = "";
+		
+		for (int i = 0; i < arrayUniversal.size(); i++) {
+			boolean encontrado = false;
+			for (int j = 0; j < interseccion.size(); j++) {
+				if(interseccion.get(j).equals(arrayUniversal.get(i))){
+					encontrado = true;
+				}
+			}
+			if(!encontrado){
+				parejas += arrayUniversal.get(i);
+			}			
+		}
+		
+		return parejas;
+	}
+	
+	
 	/**
 	 * Genera el complemento de A con respecto al conjunto universal
 	 * @return String con las parejas
@@ -263,4 +283,6 @@ public class Operaciones {
 		return parejas;
 	}
 
+	
+	
 }
